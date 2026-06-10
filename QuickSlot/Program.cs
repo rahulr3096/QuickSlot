@@ -41,6 +41,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    var port = Environment.GetEnvironmentVariable("PORT");
+
+    if (!string.IsNullOrEmpty(port))
+    {
+        serverOptions.ListenAnyIP(int.Parse(port));
+    }
+});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
