@@ -1,0 +1,6 @@
+@QuickSlot_HostAddress = http://localhost:5215
+
+GET {{QuickSlot_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
