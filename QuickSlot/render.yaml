@@ -1,7 +1,0 @@
-services:
-
-* type: web
-  name: quickslot-api
-  runtime: dotnet
-  buildCommand: dotnet publish QuickSlot.csproj -c Release
-  startCommand: dotnet QuickSlot.dll

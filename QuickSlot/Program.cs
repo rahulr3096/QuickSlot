@@ -24,9 +24,10 @@
 
 //app.Run();
 
-
+using QuickSlot.Models;
 using Microsoft.EntityFrameworkCore;
 using QuickSlot.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,5 +69,38 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
     db.Database.Migrate();
+
+    if (!db.Users.Any())
+    {
+        db.Users.Add(new User
+        {
+            Name = "Rahul"
+        });
+
+        db.Users.Add(new User
+        {
+            Name = "Test User"
+        });
+    }
+
+    if (!db.Venues.Any())
+    {
+        db.Venues.Add(new Venue
+        {
+            Name = "Badminton Court A"
+        });
+
+        db.Venues.Add(new Venue
+        {
+            Name = "Football Turf"
+        });
+
+        db.Venues.Add(new Venue
+        {
+            Name = "Cricket Ground"
+        });
+    }
+
+    db.SaveChanges();
 }
 app.Run();
